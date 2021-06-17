@@ -24,11 +24,11 @@ pipeline {
     * PreProductionEnvironment -> Where you prepare your apps to go live.
     * ProductionEnvironment -> Where your apps are live.
     */
-    DevelopmentEnvironment = 'Development'
-    RegressionEnvironment = 'Regression'
-    AcceptanceEnvironment = 'Acceptance'
-    PreProductionEnvironment = 'Pre-Production'
-    ProductionEnvironment = 'Production'
+    DevelopmentEnvironment = 'development environment # 3'
+    RegressionEnvironment = 'non-production environment # 2'
+    AcceptanceEnvironment = 'non-production environment # 2'
+    PreProductionEnvironment = 'production environment # 1'
+    ProductionEnvironment = 'production environment # 1'
     // Regression URL Specification
     ProbeEnvironmentURL = 'https://pcjcl-dev.outsystemsenterprise.com/'
     BddEnvironmentURL = 'https://pcjcl-dev.outsystemsenterprise.com/'
