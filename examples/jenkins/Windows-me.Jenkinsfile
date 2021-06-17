@@ -109,7 +109,7 @@ pipeline {
       }
       post {
         always {
-          withPythonEnv('python') {
+          withPythonEnv('C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\python') {
             echo "Publishing JUnit test results..."
             junit(testResults: "${env.ArtifactsFolder}\\junit-result.xml", allowEmptyResults: true)
           }
