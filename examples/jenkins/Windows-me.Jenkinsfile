@@ -94,17 +94,17 @@ pipeline {
         powershell "mkdir ${env.ArtifactsFolder}"
         // Only the virtual environment needs to be installed at the system level
         echo "Install Python Virtual environments"
-        powershell 'pip install -q -I virtualenv --user'
-        withPythonEnv('python') {
+        powershell 'C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\pip install -q -I virtualenv --user'
+        withPythonEnv('C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\python') {
           echo "Install Python requirements"
           // Install the rest of the dependencies at the environment level and not the system level
-          powershell "pip install -U outsystems-pipeline==\"${env.OSPackageVersion}\""
+          powershell "C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\pip install -U outsystems-pipeline==\"${env.OSPackageVersion}\""
           echo 'Generating URLs for BDD testing...'
           // Generate the URL endpoints of the BDD tests
-          powershell "python -m outsystems.pipeline.generate_unit_testing_assembly --artifacts \"${env.ArtifactsFolder}\" --app_list \"${params.ApplicationScopeWithTests}\" --cicd_probe_env ${env.ProbeEnvironmentURL} --bdd_framework_env ${env.BddEnvironmentURL}"
+          powershell "C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\python -m outsystems.pipeline.generate_unit_testing_assembly --artifacts \"${env.ArtifactsFolder}\" --app_list \"${params.ApplicationScopeWithTests}\" --cicd_probe_env ${env.ProbeEnvironmentURL} --bdd_framework_env ${env.BddEnvironmentURL}"
           echo "Testing the URLs and generating the JUnit results XML..."
           // Run those tests and generate a JUNIT test report
-          powershell(script: "python -m outsystems.pipeline.evaluate_test_results --artifacts \"${env.ArtifactsFolder}\"", returnStatus: true)
+          powershell(script: "C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\python -m outsystems.pipeline.evaluate_test_results --artifacts \"${env.ArtifactsFolder}\"", returnStatus: true)
         }
       }
       post {
