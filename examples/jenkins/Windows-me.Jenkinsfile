@@ -30,8 +30,8 @@ pipeline {
     PreProductionEnvironment = 'production environment # 1'
     ProductionEnvironment = 'production environment # 1'
     // Regression URL Specification
-    ProbeEnvironmentURL = 'https://pcjcl-dev.outsystemsenterprise.com/'
-    BddEnvironmentURL = 'https://pcjcl-dev.outsystemsenterprise.com/'
+    ProbeEnvironmentURL = 'https://pcjcl-tst.outsystemsenterprise.com/'
+    BddEnvironmentURL = 'https://pcjcl-tst.outsystemsenterprise.com/'
     // OutSystems PyPI package version
     OSPackageVersion = '0.3.1'
   }
