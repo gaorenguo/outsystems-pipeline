@@ -124,6 +124,7 @@ pipeline {
         }
       }
     }
+    /**
     stage('Deploy Acceptance') {
       agent any // Replace by specific label for narrowing down to OutSystems pipeline-specific agents
       steps {
@@ -263,5 +264,6 @@ pipeline {
         }
       }
     }
+    */
   }
 }
