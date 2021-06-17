@@ -46,17 +46,17 @@ pipeline {
         // Only the virtual environment needs to be installed at the system level
         echo "Install Python Virtual environments"
         powershell 'pip install -q -I virtualenv --user'
-        withPythonEnv('python') {
+        withPythonEnv('C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\python') {
           echo "Install Python requirements"
           // Install the rest of the dependencies at the environment level and not the system level
           powershell "pip install -U outsystems-pipeline==\"${env.OSPackageVersion}\""
           echo 'Retrieving latest application tags from Development environment...'
           // Retrive the Applications and Environment details from the Source environment
-          powershell "python -m outsystems.pipeline.fetch_lifetime_data --artifacts \"${env.ArtifactsFolder}\" --lt_url ${env.LifeTimeHostname} --lt_token ${env.AuthorizationToken} --lt_api_version ${env.LifeTimeAPIVersion}"
+          powershell "C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\python -m outsystems.pipeline.fetch_lifetime_data --artifacts \"${env.ArtifactsFolder}\" --lt_url ${env.LifeTimeHostname} --lt_token ${env.AuthorizationToken} --lt_api_version ${env.LifeTimeAPIVersion}"
           echo 'Deploying latest application tags to Regression...'
           // Deploy the application list, with tests, to the Regression environment
           lock('deployment-plan-REG') {
-            powershell "python -m outsystems.pipeline.deploy_latest_tags_to_target_env --artifacts \"${env.ArtifactsFolder}\" --lt_url ${env.LifeTimeHostname} --lt_token ${env.AuthorizationToken} --lt_api_version ${env.LifeTimeAPIVersion} --source_env \"${env.DevelopmentEnvironment}\" --destination_env \"${env.RegressionEnvironment}\" --app_list \"${params.ApplicationScopeWithTests}\""
+            powershell "C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\python -m outsystems.pipeline.deploy_latest_tags_to_target_env --artifacts \"${env.ArtifactsFolder}\" --lt_url ${env.LifeTimeHostname} --lt_token ${env.AuthorizationToken} --lt_api_version ${env.LifeTimeAPIVersion} --source_env \"${env.DevelopmentEnvironment}\" --destination_env \"${env.RegressionEnvironment}\" --app_list \"${params.ApplicationScopeWithTests}\""
           }
         }
       }
