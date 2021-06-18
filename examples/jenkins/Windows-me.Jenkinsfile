@@ -34,6 +34,11 @@ pipeline {
     BddEnvironmentURL = 'https://pcjcl-tst.outsystemsenterprise.com/'
     // OutSystems PyPI package version
     OSPackageVersion = '0.3.1'
+
+    // Fetch the Slack Hook from the credentials
+    SlackHook = credentials("${params.SlackHook}")
+    // Slack channel list
+    SlackChannels = "${params.SlackChannelList}"
   }
   stages {
     stage('Get and Deploy Latest Tags') {
@@ -112,6 +117,8 @@ pipeline {
           withPythonEnv('C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\python') {
             echo "Publishing JUnit test results..."
             junit(testResults: "${env.ArtifactsFolder}\\junit-result.xml", allowEmptyResults: true)
+            echo 'Sending test results to slack...'
+            powershell "C:\\Users\\P0168716\\AppData\\Local\\Programs\\Python\\Python37\\python .\\outsystems_integrations\\slack\\send_test_results_to_slack.py --artifacts \"${env.ArtifactsFolder}\" --slack_hook ${env.SlackHook} --slack_channel \"${env.SlackChannels}\" --pipeline jenkins --job_name \"${env.JOB_NAME}\" --job_dashboard_url ${env.RUN_DISPLAY_URL}"
           }
           dir ("${env.ArtifactsFolder}") {
             archiveArtifacts artifacts: "*_data/*.cache", onlyIfSuccessful: true
