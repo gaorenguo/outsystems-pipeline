@@ -20,7 +20,7 @@ from outsystems_integrations.slack.send_slack_message import send_slack_message
 # ---------------------- SCRIPT ----------------------
 def main(artifact_dir: str, slack_hook: str, slack_channels: list, pipeline_type: str, job_name: str, job_url: str):
     filename = os.path.join(artifact_dir, JUNIT_TEST_RESULTS_FILE)
-    _, tr = xunitparser.parse(open(filename))
+    _, tr = xunitparser.parse(open(filename, 'r', encoding="utf-8"))
 
     message = "*{}* BDD tests run.\n*{}* errors found.".format(tr.testsRun, len(tr.failures))
     # Add test report url
