@@ -8,8 +8,6 @@ pipeline {
   }
   options { skipStagesAfterUnstable() }
   environment {
-    // PATH
-    PATH = "%PATH%"
     // Artifacts Folder
     ArtifactsFolder = "Artifacts"
     // LifeTime Specific Variables
